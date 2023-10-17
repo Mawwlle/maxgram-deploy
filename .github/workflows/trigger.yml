@@ -1,0 +1,29 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to Docker registry
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Pull Frontend image
+        run: docker pull mawlle/maxgram-frontend
+
+      - name: Pull Backend image
+        run: docker pull mawlle/maxgram
+
+      - name: Restart Docker Compose
+        run: docker compose down
+
+      - name: Deploy with Docker Compose
+        run: docker compose up -d
