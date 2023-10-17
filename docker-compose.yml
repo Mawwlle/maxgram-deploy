@@ -7,6 +7,6 @@ services:
       - 80:80
 
   backend:
-    image: mawwle/maxgram
+    image: mawlle/maxgram
     ports:
       - 8000:8000
