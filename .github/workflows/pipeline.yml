@@ -16,10 +16,10 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Pull Frontend image
-        run: docker pull mawlle/maxgram-frontend
+        run: docker pull mawlle/maxgram-frontend:latest
 
       - name: Pull Backend image
-        run: docker pull mawlle/maxgram
+        run: docker pull mawlle/maxgram:latest
 
       - name: Restart Docker Compose
         run: docker compose down
